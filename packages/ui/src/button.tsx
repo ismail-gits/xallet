@@ -4,17 +4,11 @@ import { ReactNode } from "react";
 
 interface ButtonProps {
   children: ReactNode;
-  className?: string;
-  appName: string;
+  onClickHandler: () => void
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export const Button = ({ children, onClickHandler }: ButtonProps) => {
   return (
-    <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
-    >
-      {children}
-    </button>
-  );
+    <button onClick={onClickHandler} type="button" className="text-white bg-gray-700 font-bold text-xl p-2 rounded-lg cursor-pointer">{children}</button>
+  )
 };
