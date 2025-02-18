@@ -1,6 +1,10 @@
+import { AddMoneyCard } from "../../../components/AddMoneyCard";
 
 export default function() {
   return <div>
-    Transfer
+    <div className="font-extrabold text-3xl">
+      Transfer
+    </div>
+    <AddMoneyCard/>
   </div>
 }
