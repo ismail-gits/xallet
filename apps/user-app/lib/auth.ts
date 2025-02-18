@@ -2,6 +2,7 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
 import prisma from "@repo/db/client"
+import GoogleProvider from "next-auth/providers/google"
 
 export const authOptions = {
   providers: [
@@ -9,8 +10,8 @@ export const authOptions = {
       name: "Credentials",
 
       credentials: {
-        phoneNumber: { label: "phoneNumber", placeholder: "Enter your number", type: "text"},
-        password: { label: "password", placeholder: "Enter your password", type: "password"}
+        phoneNumber: { label: "Phone Number", placeholder: "Enter your number", type: "text"},
+        password: { label: "Password", placeholder: "Enter your password", type: "password"}
       },
       
       async authorize(credentials: any) {
@@ -40,7 +41,7 @@ export const authOptions = {
           const newUser = await prisma.user.create({
             data: {
               phoneNumber: credentials.phoneNumber,
-              password: credentials.password
+              password: hashedPassword
             }
           })
 
@@ -55,6 +56,10 @@ export const authOptions = {
           return null
         }
       }
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
     })
   ],
   secret: process.env.JWT_SECRET,
