@@ -10,8 +10,8 @@ interface AppBarProps {
 
 export const AppBar = ({user, onSignIn, onSignOut}: AppBarProps) => {
 
-  return <div className="flex justify-between items-center shadow-sm px-4 py-3">
-    <div className="text-3xl font-extrabold">
+  return <div className="flex justify-between shadow-sm px-4 py-2 items-center">
+    <div className="text-3xl font-extrabold pb-1">
       XALLET
     </div>
     <div>
