@@ -10,7 +10,6 @@ interface AppBarProps {
 }
 
 export const AppBar = ({user, onSignIn, onSignOut}: AppBarProps): JSX.Element => {
-
   return <div className="flex justify-between shadow-sm px-10 py-2 items-center">
     <div className="text-2xl font-extrabold pb-1 text-gray-800 hover:text-gray-700 cursor-pointer">
       XALLET
