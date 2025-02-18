@@ -3,10 +3,9 @@
 import { AppBar } from "@repo/ui/appBar"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import React from "react"
-import { JSX } from "react/jsx-dev-runtime"
+import { JSX } from "react"
 
-export const AppBarComponent = ({children}: {children: React.ReactNode}): JSX.Element => {
+export const AppBarComponent = (): JSX.Element => {
   const session = useSession()
   const router = useRouter()
 
