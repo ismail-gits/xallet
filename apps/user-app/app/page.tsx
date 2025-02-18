@@ -1,8 +1,9 @@
+import { AppBar } from "../../../packages/ui/src/AppBar";
 
 export default function Home() {
   return (
-    <div className="text-5xl font-extrabold">
-      Welcome to XALLET
+    <div>
+      <AppBar/>
     </div>
   )
 }
