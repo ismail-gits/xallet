@@ -14,32 +14,32 @@ datasource db {
 }
 
 model User {
-  id              String @id @default(uuid())
-  email           String? @unique
-  name            String?
-  password        String
-  phoneNumber     String
-  balance         Balance[]
-  transactions    OnRampTransactions[]
+  id           String  @id @default(uuid())
+  email        String? @unique
+  name         String?
+  password     String
+  phoneNumber  String
+  balance      Balance[]
+  transactions OnRampTransactions[]
 }
 
 model Balance {
-  id        String @id @default(uuid())
-  userId    String 
-  amount    Int
-  locked    Int
-  user      User @relation(fields: [userId], references: [id])
+  id     String @id @default(uuid())
+  userId String 
+  amount Int
+  locked Int
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model OnRampTransactions {
-  id           String @id @default(uuid())
-  status       OnRampStatus
-  token        String
-  provider     String
-  amount       Int
-  startTime    DateTime
-  userId       String
-  user         User @relation(fields: [userId], references: [id])
+  id        String @id @default(uuid())
+  status    OnRampStatus
+  token     String
+  provider  String
+  amount    Int
+  startTime DateTime
+  userId    String
+  user      User   @relation(fields: [userId], references: [id])
 }
 
 enum OnRampStatus {
