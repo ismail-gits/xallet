@@ -62,7 +62,7 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
     })
   ],
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({token, session}: any) {
       session.user.id = token.sub
