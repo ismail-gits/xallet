@@ -1,3 +1,4 @@
+import { JSX } from "react"
 import { Button } from "./button"
 
 interface AppBarProps {
@@ -8,7 +9,7 @@ interface AppBarProps {
   onSignOut: any
 }
 
-export const AppBar = ({user, onSignIn, onSignOut}: AppBarProps) => {
+export const AppBar = ({user, onSignIn, onSignOut}: AppBarProps): JSX.Element => {
 
   return <div className="flex justify-between shadow-sm px-4 py-2 items-center">
     <div className="text-3xl font-extrabold pb-1">

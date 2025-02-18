@@ -4,6 +4,11 @@ import bcrypt from "bcrypt"
 import prisma from "@repo/db/client"
 import GoogleProvider from "next-auth/providers/google"
 
+type CredentialsType = {
+  phoneNumber: string,
+  password: string
+}
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -14,7 +19,11 @@ export const authOptions = {
         password: { label: "Password", placeholder: "Enter your password", type: "password"}
       },
       
-      async authorize(credentials: any) {
+      async authorize(credentials: CredentialsType | undefined) {
+        if (!credentials) {
+          return null
+        }
+
         // Do ZOD validation here
         const hashedPassword = await bcrypt.hash(credentials.password, 10)
         const existingUser = await prisma.user.findFirst({
