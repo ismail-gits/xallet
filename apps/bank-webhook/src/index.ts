@@ -7,9 +7,13 @@ const PORT = 3003
 
 app.use(express.json())
 
-app.get('/hdfcWebhook', async (req: Request, res: Response): Promise<Response | any> => {
+app.post('/hdfcWebhook', async (req: Request, res: Response): Promise<Response | any> => {
   // do zod validation here
-  const paymentInformation = {
+  const paymentInformation: {
+    token: string,
+    userId: string,
+    amount: string
+  } = {
     token: req.body.token,
     userId: req.body.userId,
     amount: req.body.amount
@@ -17,7 +21,7 @@ app.get('/hdfcWebhook', async (req: Request, res: Response): Promise<Response | 
 
   try {
     await prisma.$transaction([
-      prisma.balance.update({
+      prisma.balance.updateMany({
         where: {
           userId: paymentInformation.userId
         },
@@ -27,7 +31,7 @@ app.get('/hdfcWebhook', async (req: Request, res: Response): Promise<Response | 
           }
         }
       }),
-      prisma.onRampTransactions.update({
+      prisma.onRampTransactions.updateMany({
         where: {
           token: paymentInformation.token
         },

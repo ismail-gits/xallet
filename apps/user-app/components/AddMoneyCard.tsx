@@ -1,13 +1,11 @@
 "use client"
 
-import prisma from "@repo/db/client";
 import { Button } from "@repo/ui/button";
 import { Card } from "@repo/ui/card";
 import { Select } from "@repo/ui/select";
 import { TextInput } from "@repo/ui/textInput"
-import { getServerSession } from "next-auth";
 import { JSX, useState } from "react";
-import { authOptions } from "../lib/auth";
+import { createOnRampTransaction } from "../lib/actions/createOnRampTransaction";
 
 const SUPPORTED_BANKS = [
   {
@@ -23,13 +21,14 @@ const SUPPORTED_BANKS = [
 export const AddMoneyCard = (): JSX.Element => {
   const [ redirectUrl, setRedirectUrl ] = useState(SUPPORTED_BANKS[0]?.redirectUrl)
   const [ amount, setAmount ] = useState(0)
-  const [ prodiver, setProvider ] = useState("")
-  const session = await getServerSession(authOptions)
+  const [ provider, setProvider ] = useState(SUPPORTED_BANKS[0]?.name || "")
 
   return <Card title="Add Money">
     <div className="w-full pt-4">
       <div>
-        <TextInput label="Amount" placeholder="Amount" onChange={(value) => {setAmount(Number(value))}}/>
+        <TextInput onChange={(value) => {
+          setAmount(Number(value))
+        }} label="Amount" placeholder="Amount" />
       </div>
       <div className="py-4">
         <Select label="Bank" onSelect={(value) => {
@@ -42,16 +41,7 @@ export const AddMoneyCard = (): JSX.Element => {
       </div>
       <div className="flex justify-center pt-4">
         <Button onClickHandler={async () => {
-          await prisma.onRampTransactions.create({
-            data: {
-              userId: session.user.id,
-              amount: amount,
-              provider: prodiver,
-              status: "Processing",
-              startTime: new Date(),
-              token: "token_3"
-            }
-          })
+          await createOnRampTransaction(amount * 100, provider)
           window.location.href = redirectUrl || ""
         }}>Add Money</Button>
       </div>

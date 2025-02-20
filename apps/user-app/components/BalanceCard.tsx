@@ -8,7 +8,7 @@ type BalanceCardType = {
 
 export const BalanceCard = ({amount, locked}: BalanceCardType) => {
   return <Card title="Balance">
-    <div className="flex justify-between border-b border-gray-300 py-2 ">
+    <div className="flex justify-between border-b border-gray-300 py-2">
       <div>
         Unlocked Balance
       </div>
