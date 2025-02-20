@@ -2,13 +2,13 @@ import React, { JSX } from "react";
 import { SideBarItem } from "../../components/SideBarItem";
 
 export default function Layout({children}: {children: React.ReactNode}): JSX.Element {
-  return <div className="flex">
-    <div className="flex flex-col py-20 pl-8 w-70 h-screen shadow-md">
+  return <div className="flex min-h-screen">
+    <div className="flex flex-col py-20 pl-8 w-65 min-h-screen shadow-md">
       <SideBarItem href="/dashboard" icon={<HomeIcon/>}>Home</SideBarItem>
       <SideBarItem href="/transfer" icon={<TrasnferIcon/>}>Transfer</SideBarItem>
       <SideBarItem href="/transactions" icon={<TransactionsIcon/>}>Transactions</SideBarItem>
     </div>
-    <div className="p-3">
+    <div className="flex-1 p-4">
       {children}
     </div>
   </div>
