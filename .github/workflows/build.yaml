@@ -19,5 +19,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Generate Prisma Client
+        run: cd prisma && npx prisma generate && cd ..
+
       - name: Run Build
-        run: npm run build
+        run: cd apps/user-app && npm run build
