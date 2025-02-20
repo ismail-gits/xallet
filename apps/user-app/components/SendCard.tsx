@@ -4,6 +4,7 @@ import { Button } from "@repo/ui/button"
 import { Card } from "@repo/ui/card"
 import { TextInput } from "@repo/ui/textInput"
 import { useState } from "react";
+import { p2pTransfer } from "../lib/actions/p2pTransfer";
 
 export const SendCard = () => {
   const [ phoneNumber, setPhoneNumber ] = useState("")
@@ -18,7 +19,7 @@ export const SendCard = () => {
   </div>
   <div className="flex justify-center">
     <Button onClickHandler={ async () => {
-      alert(`send to ${phoneNumber} and amount ${amount}`)
+      await p2pTransfer(phoneNumber, amount * 100)
     }}>Send</Button>
   </div>
 </Card>
