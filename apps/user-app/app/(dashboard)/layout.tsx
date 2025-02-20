@@ -7,6 +7,7 @@ export default function Layout({children}: {children: React.ReactNode}): JSX.Ele
       <SideBarItem href="/dashboard" icon={<HomeIcon/>}>Home</SideBarItem>
       <SideBarItem href="/transfer" icon={<TrasnferIcon/>}>Transfer</SideBarItem>
       <SideBarItem href="/transactions" icon={<TransactionsIcon/>}>Transactions</SideBarItem>
+      <SideBarItem href="/p2p" icon={<P2PTransfer/>}>P2P Transfer</SideBarItem>
     </div>
     <div className="flex-1 p-4 overflow-hidden">
       {children}
@@ -29,5 +30,11 @@ function TrasnferIcon() {
 function TransactionsIcon() {
   return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7">
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
+}
+
+function P2PTransfer() {
+  return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7">
+    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
   </svg>
 }
