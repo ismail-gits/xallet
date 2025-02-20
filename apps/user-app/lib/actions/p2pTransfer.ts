@@ -62,6 +62,15 @@ export const p2pTransfer = async (to: string, amount: number) => {
           }
         }
       })
+
+      await t.p2pTransfer.create({
+        data: {
+          fromUserId: fromUserId,
+          toUserId: toUser.id,
+          amount,
+          timeStamp: new Date()
+        }
+      })
     })
   }
   catch(err) {
