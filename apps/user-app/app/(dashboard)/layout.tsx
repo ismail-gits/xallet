@@ -3,12 +3,12 @@ import { SideBarItem } from "../../components/SideBarItem";
 
 export default function Layout({children}: {children: React.ReactNode}): JSX.Element {
   return <div className="flex min-h-screen">
-    <div className="flex flex-col py-20 pl-8 w-65 min-h-screen shadow-md">
+    <div className="flex flex-col py-20 pl-8 w-64 min-h-screen shadow-md">
       <SideBarItem href="/dashboard" icon={<HomeIcon/>}>Home</SideBarItem>
       <SideBarItem href="/transfer" icon={<TrasnferIcon/>}>Transfer</SideBarItem>
       <SideBarItem href="/transactions" icon={<TransactionsIcon/>}>Transactions</SideBarItem>
     </div>
-    <div className="flex-1 p-4">
+    <div className="flex-1 p-4 overflow-hidden">
       {children}
     </div>
   </div>

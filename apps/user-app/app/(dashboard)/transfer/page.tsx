@@ -30,6 +30,7 @@ async function getOnRampTransactions() {
   })
 
   return transactions.map(t => ({
+    id: t.id,
     time: t.startTime,
     amount: t.amount,
     status: t.status,
@@ -42,11 +43,11 @@ export default async function() {
   const { amount, locked } = await getBalance()
   const transactions = await getOnRampTransactions()
 
-  return <div className=" w-full">
+  return <div className="w-full max-w-full">
     <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold pl-2">
       Transfer
     </div>
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 py-4 pl-4">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 p-4">
       <div>
         <AddMoneyCard/>
       </div>
