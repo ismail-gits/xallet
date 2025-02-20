@@ -9,6 +9,9 @@ app.use(express.json())
 
 app.post('/hdfcWebhook', async (req: Request, res: Response): Promise<Response | any> => {
   // do zod validation here
+  // check if this transaction is processing or not, if processing only then proceed
+
+
   const paymentInformation: {
     token: string,
     userId: string,
