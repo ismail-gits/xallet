@@ -1,10 +1,14 @@
-import { JSX } from "react";
+"use client";
 
-export default function Home(): JSX.Element {
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-  return (
-    <div>
-      WELCOME TO XALLET
-    </div>
-  )
+export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/dashboard");
+  }, [router]);
+
+  return <div>Redirecting...</div>;
 }
